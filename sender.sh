@@ -1,4 +1,16 @@
 #!/bin/sh
 #sender.sh
+#three args needed as: count, server-host ip, new ip
 
-perl -e 'print "A"x64' | nc 10.0.0.27 2222
+count=0
+while [ $count -lt $1 ]
+
+do
+        
+        count=`expr $count + 1`
+	perl -e 'print "A"x64' | nc $2 2222
+done
+#rm ping.txt
+#touch ping.txt
+(ping $3  -c 1 >> ping.txt 2>&1)& 
+
